@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+{% block content %}
+<div class="container">
+    <div class='py-5 text-center'>
+    <div class='row'>
+    <div class="col-md order-md-1">
+        <form class ="needs-validation"action="{% url 'login' %}" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Login</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Please write your information</h6>
+                    <p class="card-text">
+                        <div class="form-group">
+                            <label for="ID_input">ID</label>
+                            <input type="text" class="form-control" id="ID_input" name="id" placeholder="Enter ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="pwd"
+                                placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
