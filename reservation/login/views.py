@@ -52,7 +52,7 @@ def login(request) :
             context = {"errMsg" : errMsg}
             request.session['userid'] = u.idName
             request.session['manager'] = u.isManager
-            return render(request, "main/home.html", context)
+            return redirect("home")
     elif request.session.get('userid') :
         errMsg = "이미 로그인 중"
         return redirect("login", errMsg)

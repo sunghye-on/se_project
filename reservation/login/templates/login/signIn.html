@@ -1,11 +1,11 @@
 {% extends 'main/layout.html' %}
-{% block content %}
+{% block header %}
 <div class="container">
     <form action="{% url 'sign' %}" method="POST">
         {% csrf_token %}
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Sign In</h5>
+                <h5 class="card-title">Sign Up</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Please write your information</h6>
                 <p class="card-text">
                     <div class="form-group">

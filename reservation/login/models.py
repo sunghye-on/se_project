@@ -25,3 +25,5 @@ class Restaurant(models.Model) :
     name = models.CharField(max_length=30)
     location = models.ForeignKey("Location", on_delete=models.CASCADE)
     user = models.ForeignKey("User", on_delete=models.CASCADE)
+    max_customer = models.IntegerField(blank=True, null=True)
+    current_customer = models.IntegerField(default=0)
