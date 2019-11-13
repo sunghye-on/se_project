@@ -1,7 +1,10 @@
-{% extends 'main/layout.html' %}
-
+{% extends 'main/mainsite/contract.html' %}
+{% load static %}
+{% block title %}
+Galpung
+{% endblock %}
 {% block content %}
-<div class="container">
+<!-- <div class="container">
         {% if errMsg %}
         <div class="alert alert-primary" role="alert">
                 {{errMsg}}
@@ -34,5 +37,5 @@
                 </div>
                 {% endfor %}
         </div>
-</div>
+</div> -->
 {% endblock %}
