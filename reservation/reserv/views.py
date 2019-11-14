@@ -6,6 +6,7 @@ from datetime import datetime
 # Create your views here.
 
 def reserv_home(request) :
+    # home화면이 아닌 데이터 입력으로 접속함/세션이 존재함
     if request.method == "POST" and request.session.get('userid') :
         date = request.POST['date']
         hopping_member = request.POST['hopping_member']
