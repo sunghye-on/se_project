@@ -1,0 +1,7 @@
+# ver 0.5
+- 현재 구현 상황
+- 로그인 80% 구현
+- 예약 추가 및 확인 구현
+  * reserv/views.py, models.py, urls.py, templates
+- 메인페이지 및 css/js 추가
+  * layout.html, mainsite/header.html ...
