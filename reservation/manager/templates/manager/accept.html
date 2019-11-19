@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %}
+{% block content %}
+<div class="container">
+    <form action="{% url 'm_accept' %}" method="POST">
+        {% csrf_token %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Restaurant information</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Please write your information</h6>
+                <p class="card-text">
+                    <div class="form-group">
+                        <label for="Restaurant_name">Restaurant name</label>
+                        <input type="text" class="form-control" id="Restaurant_name" name="restName"
+                            placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="Location">Location</label>
+                        <input type="text" class="form-control" id="Location" name="local" placeholer="ex) Incheon">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

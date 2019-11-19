@@ -1,0 +1,37 @@
+{% extends 'main/layout.html' %}
+{% block header %}
+<div class="container">
+    <form action="{% url 'sign' %}" method="POST">
+        {% csrf_token %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Sign Up</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Please write your information</h6>
+                <p class="card-text">
+                    <div class="form-group">
+                        <label for="NickName_input">Nick Name</label>
+                        <input type="text" class="form-control" id="NickName_input" name="nickname" placeholder="Enter NickName">
+                    </div>
+                    <div class="form-group">
+                        <label for="ID_input">ID</label>
+                        <input type="text" class="form-control" id="ID_input" name="id" placeholder="Enter ID">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="City_input">City</label>
+                        <input type="text" class="form-control" id="City_input" name="city" placeholer="ex) Incheon">
+                    </div> -->
+                    <div class="form-group">
+                            <label for="PN_input">Phone Number</label>
+                            <input type="text" class="form-control" id="PN_input" name="phone_number" placeholder="01012345678">
+                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="pwd" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'main/mainsite/about.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block product %}
+<section id="projects" class="projects-section bg-light">
+    <div class="container">
+
+      <!-- Featured Project Row -->
+      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+        <div class="col-xl-8 col-lg-7">
+          <img class="img-fluid mb-3 mb-lg-0" src="{% static 'main/img/bg-masthead.jpg' %}?ver=1" alt="">
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="featured-text text-center text-lg-left">
+            <h4>참숯</h4>
+            <p class="text-black-50 mb-0">가게 바깥에서 바로 볼 수 있는 화덕에서 갓 나온 참숯을 이용합니다.
+            </br>참숯을 이용하면 육즙을 보관해 육즙이 좔좔 흐르는 고기를 구울 수 있습니다.
+            </br>참숯으로 구운 고기의 풍미를 느껴보세요.</p>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Project One Row -->
+      <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="{% static 'main/img/main_meat2.jpg'%}?ver=1" alt="">
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">마눌 갈비살</h4>
+                <p class="mb-0 text-white-50">갈풍집의 대표메뉴 마늘양념갈비살!!
+                </br>달달하고 고소한 마늘향이 가득한 남녀노소 누구나 좋아하는 갈풍만의 대표메뉴입니다.</p>
+                <hr class="d-none d-lg-block mb-0 ml-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Two Row -->
+      <div class="row justify-content-center no-gutters">
+        <div class="col-lg-6">
+          <img class="img-fluid" src="{% static 'main/img/main_meat3.jpg'%}?ver=1" alt="">
+        </div>
+        <div class="col-lg-6 order-lg-first">
+          <div class="bg-black text-center h-100 project">
+            <div class="d-flex h-100">
+              <div class="project-text w-100 my-auto text-center text-lg-right">
+                <h4 class="text-white">맬콤 갈비살</h4>
+                <p class="mb-0 text-white-50">갈풍만의 특제소스로 양념한 갈비살!!
+                </br>단짠단짠과 기분좋은 매콤함을 느낄 수 있는 시그니쳐 메뉴입니다.
+                </br>많이 매운맛이 아니라 누구나 잘 드실 수 있는 갈비살 구이입니다.</p>
+                <hr class="d-none d-lg-block mb-0 mr-0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'main/mainsite/header.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% block about %}
+<section id="about" class="about-section text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2 class="text-white mb-4">참숯으로 굽는 소갈비살 전문점, 갈풍</h2>
+          <p class="text-white-50">참숯으로 구워 참숯의 향이 배인 소갈비살을 맛볼 수 있는 곳,</br>매일 신선한 고기를 사용하여 고기의 품질을 보장합니다.
+          </br>남녀노소 어린아이 할 것 없이 누구나 맛있게 즐길 수 있는 소갈비살!</p>
+          
+        </div>
+      </div>
+      <img class="img-fluid" src="{% static 'main/img/main_meat4.jpg'%}?ver=1" alt="">
+    </div>
+  </section>
+{% endblock %}
