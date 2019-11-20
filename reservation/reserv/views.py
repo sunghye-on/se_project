@@ -74,5 +74,8 @@ def reserv_check(request) :
     context = {"reservation" : list_relate}
     return render(request, "reserv/reservation_check.html", context)
 
-def reserv_modify(request, pk) :
-    return render(request, "reserv/reserv_home.html")
+#def reserv_modify(request, pk) :
+    #return render(request, "reserv/reserv_home.html")
+
+def test_modify (request) :
+    return render(request, "reserv/reserv_modify.html")
