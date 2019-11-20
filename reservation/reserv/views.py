@@ -56,16 +56,9 @@ def reserv_home(request) :
 
 # 예약이 얼만큼 됐는지 확인하는 페이지 접근
 def reserv_check(request) :
-<<<<<<< HEAD
     user = get_object_or_404(User, idName = request.session.get('userid'))
-=======
-    user = User.objects.get(idName = request.session.get('userid'))
-<<<<<<< HEAD
     relates = Relate_reserv.objects.filter(user=user).order_by()
-=======
->>>>>>> ab9b8e6595923701be361cf9c425accdeec0eaee
     relates = relate_reserv.objects.filter(user=user).order_by()
->>>>>>> 04175478770fd5d5c89c7aab388674618ab0ab77
     list_relate = []
     for relate in relates :
         if relate.reservation.reservation_time > datetime :
@@ -73,14 +66,7 @@ def reserv_check(request) :
     
     context = {"reservation" : list_relate}
     
-<<<<<<< HEAD
-    return render(request, "reserv/reservation_check.html", context)
-=======
     return render(request, "reserv/reservation_check.html", context)
 
-<<<<<<< HEAD
 def test_reserv_check(request) :
     return render(request, "reserv/reservation_check.html")
-=======
->>>>>>> 04175478770fd5d5c89c7aab388674618ab0ab77
->>>>>>> ab9b8e6595923701be361cf9c425accdeec0eaee
