@@ -3,6 +3,11 @@
 {% block header %}
 <div class="container">
     <div style="padding-top :10%">
+        {% if errmsg %}
+        <div class="alert alert-warning" role="alert">
+            {{ errmsg }}
+          </div>
+        {% endif %}
         <div class="py-5 text-center">
             <h2>식당 예약 시스템</h2>
             <p class="lead">여러분의 예약을 기다립니다. 빠르고 간편하게 예약 하세요. </p>
@@ -10,7 +15,7 @@
         <div class="row">
             <div class="col-md order-md-1">
                 <h4 class="mb-3">{% if request.session.userid %}예약 입력 규격{% else %}비회원 예약 입력 규격{% endif %}</h4>
-                <form action="{% url 'resrv_home' %}" method="POST" class="needs-validation" novalidate>
+                <form action="{% url 'resrv_home' %}" method="POST" class="needs-validation" novalidate> {% csrf_token %}
                     <div class="row">
                         <div class="col-md mb-3">
                             <label for="reserv_date">예약 희망 일자</label>

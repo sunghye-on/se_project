@@ -1,18 +1,27 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from login.models import *
 from .models import *
-from datetime import datetime
-
+from datetime import datetime, date
 # Create your views here.
+
+def reserv_looking_home(request) :
+    user = get_object_or_404(User, idName = request.session.get('userid'))
+    relates = Relate_reserv.objects.filter(user=user).order_by()
+    list_relate = []
+    for relate in relates :
+        if relate.reservate.reservation_time > timezone.now() :
+            list_relate.append(relate.reservate)
+    context = {"reservation" : list_relate, "user" : user}
+    return render(request, "reserv/reserv_home.html", context)
 
 def reserv_home(request) :
     # home화면이 아닌 데이터 입력으로 접속함/세션이 존재함
     if request.method == "POST" and request.session.get('userid') :
-        date = request.POST['date']
-        hopping_member = request.POST['hopping_member']
+        date = datetime.strptime(request.POST['date'], '%Y-%m-%dT%H:%M')
+        hopping_member = int(request.POST['hopping_member'])
         galp = Restaurant.objects
         galpungs = Restaurant.objects.all()
-            
         # 데이터베이스에 있는 갈풍집 가져옮
         for galpung in galpungs :
             galp = galpung
@@ -29,8 +38,8 @@ def reserv_home(request) :
 
             user = User.objects.get(idName = request.session.get('userid'))
             # 현재 로그인된 객체와 예약 객체, 갈풍 객체 하나로 합침
-            reservation_relate = relate_reserv (
-                reservation = reservation,
+            reservation_relate = Relate_reserv (
+                reservate = reservation,
                 user = user,
                 restaurant = galp
             )
@@ -41,16 +50,16 @@ def reserv_home(request) :
         # 현재 시간보다 이 전 시간을 제외시킴
         elif date <= datetime.now() :
             errmsg = "date error"
-            return render(request, "reserv/reservation.html", {'errmsg' : errmsg})
+            return render(request, "reserv/reservate.html", {'errmsg' : errmsg})
         # 전체 가능 예약 인원과, 현재 인원에 대해서 초과된 인원 넘겨줌
         elif galp.current_customer + hopping_member >= galp.max_customer :
             fully_customer = galp.max_customer + galp.current_customer
             errmsg = "Full reservation customer" + fully_customer
-            return render(request, "reserv/reservation.html", {"errmsg" : errmsg})
+            return render(request, "reserv/reservate.html", {"errmsg" : errmsg})
         # 알 수 없는 오류 / 사용자의 잘못된 form 입력
         else :
             errmsg = "Please write right application"
-            return render(request, "reserv/reservation.html", {"errmsg" : errmsg})
+            return render(request, "reserv/reservate.html", {"errmsg" : errmsg})
 
     return render(request, 'reserv/reservate.html')
 
@@ -58,15 +67,12 @@ def reserv_home(request) :
 def reserv_check(request) :
     user = get_object_or_404(User, idName = request.session.get('userid'))
     relates = Relate_reserv.objects.filter(user=user).order_by()
-    relates = relate_reserv.objects.filter(user=user).order_by()
     list_relate = []
     for relate in relates :
-        if relate.reservation.reservation_time > datetime :
-            list_relate.append(relate.reservation)
-    
+        if relate.reservate.reservation_time > timezone.now() :
+            list_relate.append(relate.reservate)
     context = {"reservation" : list_relate}
-    
     return render(request, "reserv/reservation_check.html", context)
 
-def test_reserv_check(request) :
-    return render(request, "reserv/reservation_check.html")
+def reserv_modify(request, pk) :
+    return render(request, "reserv/reserv_home.html")
