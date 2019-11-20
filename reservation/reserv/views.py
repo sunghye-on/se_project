@@ -74,8 +74,36 @@ def reserv_check(request) :
     context = {"reservation" : list_relate}
     return render(request, "reserv/reservation_check.html", context)
 
+<<<<<<< HEAD
 #def reserv_modify(request, pk) :
     #return render(request, "reserv/reserv_home.html")
 
 def test_modify (request) :
     return render(request, "reserv/reserv_modify.html")
+=======
+def reserv_modify_render(request, pk) :
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    relate = get_object_or_404(Relate_reserv, restaurant=restaurant)
+    reservation = relate.Reservation
+
+    context = {"reservation" : reservation}
+    return render(request, "reserv/reserv_home.html", context)
+
+def reserv_modify(request, pk) :
+    # year_month = request.POST["date"]
+    # time = request.POST["time"]
+    
+    date = datetime.strptime(request.POST['date'], '%Y-%m-%dT%H:%M')
+    people = int(request.POST["many"])
+    
+    restaurant = get_object_or_404(Restaurant, pk=pk)
+    relate = get_object_or_404(Relate_reserv, restaurant=restaurant)
+    reservation = relate.Reservation
+
+    reservation.reservation_time = date
+    reservation.people = people
+
+    reservation.save()
+
+    return redirect("resrv_home")
+>>>>>>> 14ea0a6b5f785a87958337c84810dc67cc63e0b3
