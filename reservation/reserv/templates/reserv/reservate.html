@@ -4,14 +4,13 @@
 <div class="container">
     <div style="padding-top :10%">
         <div class="py-5 text-center">
-            <h2>{{ restaurant }} 식당 예약 시스템</h2>
-            <p class="lead">{{ restaurant }}이 여러분의 예약을 기다립니다. 빠르고 간편하게 예약 하세요. </p>
+            <h2>식당 예약 시스템</h2>
+            <p class="lead">여러분의 예약을 기다립니다. 빠르고 간편하게 예약 하세요. </p>
         </div>
         <div class="row">
             <div class="col-md order-md-1">
                 <h4 class="mb-3">{% if request.session.userid %}예약 입력 규격{% else %}비회원 예약 입력 규격{% endif %}</h4>
-                <form class="needs-validation" novalidate>
-                    {% if request.session.userid %}
+                <form action="{% url 'resrv_home' %}" method="POST" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md mb-3">
                             <label for="reserv_date">예약 희망 일자</label>
@@ -29,43 +28,6 @@
                             </div>
                         </div>
                     </div>
-                    {% else %}
-                    <div class="row">
-                        <div class="col-md mb-3">
-                            <label for="reserv_name">예약자 이름</label>
-                            <input type="text" class="form-control" id="reserv_name" name="name" placeholder="" value=""
-                                required>
-                            <div class="invalid-feedback">
-                                Valid name is required.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email">예약자 전화번호 <span class="text-muted">( - 없이 입력하세요)</span></label>
-                        <input type="email" class="form-control" id="email" placeholder="010-1234-5678">
-                        <div class="invalid-feedback">
-                            Valid phone number is required.
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md mb-3">
-                            <label for="reserv_date">예약 희망 일자</label>
-                            <input type="datetime-local" class="form-control" id="reserv_date" name="date"
-                                placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Valid date is required.
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="reserv_people">희망 인원</label>
-                            <input type="number" class="form-control" id="reserv_people" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Valid how many people want reservation is required.
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
                     <hr class="mb-4">
                     <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
                 </form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from login.models import *
 from .models import *
 from datetime import datetime
@@ -12,7 +12,7 @@ def reserv_home(request) :
         hopping_member = request.POST['hopping_member']
         galp = Restaurant.objects
         galpungs = Restaurant.objects.all()
-        
+            
         # 데이터베이스에 있는 갈풍집 가져옮
         for galpung in galpungs :
             galp = galpung
@@ -56,7 +56,7 @@ def reserv_home(request) :
 
 # 예약이 얼만큼 됐는지 확인하는 페이지 접근
 def reserv_check(request) :
-    user = User.objects.get(idName = request.session.get('userid'))
+    user = get_object_or_404(User, idName = request.session.get('userid'))
     relates = relate_reserv.objects.filter(user=user).order_by()
     list_relate = []
     for relate in relates :
@@ -66,4 +66,3 @@ def reserv_check(request) :
     context = {"reservation" : list_relate}
     
     return render(request, "reserv/reservation_check.html", context)
-

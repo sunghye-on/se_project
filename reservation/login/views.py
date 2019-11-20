@@ -12,10 +12,15 @@ def sign_up (request) :
         # local = Location.objects.get(city=city)
         nickname = request.POST["nickname"]
         phone = request.POST["phone_number"]
+        checkpwd = request.POST["checkpwd"]
 
         if User.objects.filter(idName=userid) :
             errMsg = "이미 존재하는 아이디입니다."
             return render(request, "login/signup.html", {"errMsg" : errMsg})
+
+        if checkpwd != password :
+            errMsg = "잘못된 패스워드를 입력했습니다."
+            return redirect("home", errMsg)
 
         user = User (
             idName = userid,

@@ -52,7 +52,7 @@
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
           </li>
-          {% if request.session.manager == none %}
+          {% if request.session.manager == none or request.session.userid == none %}
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{% url 'resrv_home' %}">Reservation</a>
           </li>
