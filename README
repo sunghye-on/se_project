@@ -5,3 +5,11 @@
   * reserv/views.py, models.py, urls.py, templates
 - 메인페이지 및 css/js 추가
   * layout.html, mainsite/header.html ...
+
+#ver0.7
+- 현재 구현 상황
+- 유저 예약 프론트, 백엔드 전체 완료
+- 로그인 구현 중
+
+#ver0.9
+- 괸리자 기능 개선 및 추가 

@@ -68,9 +68,18 @@ def reserv_check(request) :
     context = {"reservation" : list_relate, "user" : user}
     return render(request, "reserv/reservation_check.html", context)
 
+<<<<<<< HEAD
 #def reserv_modify(request, pk) :
     #return render(request, "reserv/reserv_home.html")
 
+=======
+
+#def reserv_modify(request, pk) :
+    #return render(request, "reserv/reserv_home.html")
+
+def test_modify (request) :
+    return render(request, "reserv/reserv_modify.html")
+>>>>>>> fbe3d3de95783437cd2410de69f94d30e9183359
 
 def reserv_modify_render(request, pk) :
     reservation = get_object_or_404(Reservation, pk=pk)
@@ -112,3 +121,7 @@ def reserv_modify(request, pk) :
     reservation.save()
 
     return redirect("resrv_home")
+<<<<<<< HEAD
+=======
+
+>>>>>>> fbe3d3de95783437cd2410de69f94d30e9183359
