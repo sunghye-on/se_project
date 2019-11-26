@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.sessions.models import Session
 from .models import *
 
@@ -13,6 +13,7 @@ def sign_up (request) :
         nickname = request.POST["nickname"]
         phone = request.POST["phone_number"]
         checkpwd = request.POST["checkpwd"]
+
 
         if User.objects.filter(idName=userid) :
             errMsg = "이미 존재하는 아이디입니다."
@@ -68,3 +69,33 @@ def login(request) :
         return redirect("login", errMsg)
     else :
         return render(request, "login/login.html")
+
+def find_pwd(request) :
+    if request.method == "POST" :
+        username = request.POST["id"]
+        phone = request.POST["number"]
+        
+        current_user = User.objects.filter(idName=username, phoneNumber=phone)
+
+        if current_user :
+            context = {"username" : username}
+            return render(request, "login/change.html", context)
+        else :
+            errMsg = "cant found your id"
+            return redirect("home", errMsg)
+    else :
+        return render(request, "login/find_pwd.html")
+        
+def change_pwd(request) :
+    username = request.POST['id']
+    pwd = request.POST['pwd']
+    checkpwd = request.POST['checkpwd']
+
+    if pwd == checkpwd :
+        user = get_object_or_404(User, idName=username)
+        user.password = pwd
+        user.save()
+        return redirect("home")
+    else :
+        errMsg = "please check password"
+        return render(request, "login/change.html", {"errMsg" : errMsg})

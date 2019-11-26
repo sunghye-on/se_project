@@ -3,37 +3,40 @@
 {% block header %}
 {% block reservation %}
 {% endblock %}
-<div class="container"> 
+<div class="container">
   <div style="margin: 100px;"></div>
 
   <form class="align-center" action="{% url 'sign' %}" method="POST">
-      {% csrf_token %}
-  <div style="background: gray; margin: auto; position: relative; height: 300px; width: 963px;">
-        <div class="col-lg-12 text-center" style = "color :white; position: absolute; top: 50%; transform: translateY(-50%);">
-          <h1>Last Reservation</h1></br>
-          <p><strong>예약 날짜: </strong>{{reservation.1.reservation_time|date:"Y/m/d D"}}</p>
-          <p><strong>예약 시간: </strong>{{reservation.1.reservation_time|date:"H:i"}}</p>
-          <p><strong>예약 인원: </strong>{{reservation.1.people}}</p>
-        </div> 
-    </div> 
-    
+    {% csrf_token %}
+    <div style="background: gray; margin: auto; position: relative; height: 300px; width: 963px;">
+      <div class="col-lg-12 text-center"
+        style="color :white; position: absolute; top: 50%; transform: translateY(-50%);">
+        <h1>Last Reservation</h1></br>
+        <p><strong>예약 날짜: </strong>{{reservation.1.reservation_time|date:"Y/m/d D"}}</p>
+        <p><strong>예약 시간: </strong>{{reservation.1.reservation_time|date:"H:i"}}</p>
+        <p><strong>예약 인원: </strong>{{reservation.1.people}}</p>
+      </div>
+    </div>
+
   </form>
 
-  <div style="margin-top: 50px; margin-bottom: 50px;"> 
-        <!--table 참고 링크--> 
-  <!-- https://wenzhixin.github.io/fresh-bootstrap-table/fresh-table-tutorial.html -->
-  <div>
+  <div style="margin-top: 50px; margin-bottom: 50px;">
+    <!--table 참고 링크-->
+    <!-- https://wenzhixin.github.io/fresh-bootstrap-table/fresh-table-tutorial.html -->
+    <div>
       <!--
         Available colors for the full background: full-color-blue, full-color-azure, full-color-green, full-color-red, full-color-orange
         Available colors only for the toolbar: toolbar-color-blue, toolbar-color-azure, toolbar-color-green, toolbar-color-red, toolbar-color-orange
       -->
-    
-      <table id="fresh-table" class="table" style="width: 963px; text-align: center; background: #e9e9e9; border: 4; border-color: black; margin: auto;">
+
+      <table id="fresh-table" class="table"
+        style="width: 963px; text-align: center; background: #e9e9e9; border: 4; border-color: black; margin: auto;">
         <thead>
           <th data-field="id">#</th>
           <th data-field="name">예약 날짜</th>
-          <th data-field="salary">예약 시간</th> 
+          <th data-field="salary">예약 시간</th>
           <th data-field="country">예약 인원</th>
+          <th data-field="">수정</th>
         </thead>
         <tbody>
           {% for reserv in reservation %}
@@ -42,12 +45,17 @@
             <td>{{reserv.reservation_time|date:"Y/m/d D"}}</td>
             <td>{{reserv.reservation_time|date:"H:i"}}</td>
             <td>{{reserv.people}}</td>
+            <td>
+              <form action="{% url 'reserv_modify' reserv.pk %}">
+                <button class="btn btn-primary btn-lg" type="submit">예약 수정하기</button>
+              </form>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </div>
-  </div> 
-</div> 
+  </div>
+</div>
 
 {% endblock %}
