@@ -44,15 +44,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            <a class="nav-link js-scroll-trigger" href="/#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
+            <a class="nav-link js-scroll-trigger" href="/#projects">Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="/#signup">Contact</a>
           </li>
-          {% if request.session.manager == none or request.session.userid %}
+          {% if request.session.manager == none %}
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{% url 'resrv_home' %}">Reservation</a>
           </li>
@@ -66,7 +66,11 @@
           </li>
           {% if request.session.manager %}
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="">MangerInfo</a>
+            <a class="nav-link js-scroll-trigger" href="{% url 'm_home' %}">MangerInfo</a>
+          </li>
+            {% elif request.session.manager == False and request.session.userid %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'resrv_home' %}">Reservation</a>
           </li>
           {% endif %}
         </ul>
