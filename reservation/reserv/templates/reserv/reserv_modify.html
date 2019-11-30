@@ -1,0 +1,46 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block header %}
+
+<div class="container">
+    <div style="padding-top :10%">
+        {% if errmsg %}
+        <div class="alert alert-warning" role="alert">
+            {{ errmsg }}
+          </div>
+        {% endif %}
+        <div class="py-5 text-center">
+            <h2> 예약 변경</h2>
+            <p class="lead">빠르고 간편하게 변경하세요. </p>
+        </div>
+        <div class="row">
+            <div class="col-md order-md-1">
+                <form action="/reserv/modify/{{reservation.pk}}/success/" method="POST" class="needs-validation" novalidate> {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md mb-3">
+                            <label for="reserv_date">수정 희망 일자</label>
+                            <input type="datetime-local" class="form-control" id="reserv_date" name="date"
+                                placeholder="" value="{{reservation.reservation_time}}" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="reserv_people">희망 인원</label>
+                            <input type="number" class="form-control" id="reserv_people" placeholder="{{reservation.people}}" value="{{reservation.people}}" name="many" required>
+                            <div class="invalid-feedback">
+                                Zip code required.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <a class="btn btn-danger btn-lg " href="{% url 'resrv_home' %}" style="float: right; margin-left: 10px;" >취소</a>
+                    <button class="btn btn-primary btn-lg " type="submit" style="float: right;">수정</button>
+                </form>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+{% endblock %}

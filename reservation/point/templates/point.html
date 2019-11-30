@@ -1,0 +1,87 @@
+{% extends 'main/layout.html' %} {% block header %}
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="top">
+        <h1>회원 포인트 관리</h1>
+    </div>
+    <br>
+    <!-- 예약 리스트를 가져올 부분 -->
+    <div class="container" style="border: 3px solid rgba(0, 0, 0, 0.3); border-radius : 5px; position : relative">
+        {%for list in posts %}
+        <div class="del" style="float : right; margin-left: 10px; margin-top: 13px;">
+            <form class="value"  method="POST" action = "{% url 'calPoint' list.id %}">
+                {% csrf_token %}
+               
+                <select class="custom-select mr-sm-2" id="modelist" name="mode" style = "border : 3px solid rgba(0,1,0,0.3)">
+                    <option selected value = "0">포인트 관리 옵션</option>
+                    
+                    <option value="1">매출 포인트 적립</option>
+                    <option value="2">선 입금 포인트 적립</option>
+                    <option value="3">포인트 사용</option>
+                </select>
+             
+                 <input class="form-control" name = "money" type="number" placeholder="금액입력(원)" style = "margin-top : 10px; width : 300px;">
+                <input class="btn-info" type="submit" value="적용하기" style = "height : 30px; width : 100px; margin-top : 10px;">
+            </form>
+        </div>
+        <div class="list" style = "margin-top : 10px;">
+            <div class="card" style="margin-top : 13px;">
+                <div class="card-body" style="padding-top : 12px; margin-top : 10px;">
+                    <p>
+                        <b>아이디 : {{ list.idName }}</b>
+                        <br>
+                        <b>주문 횟수 : </b>{{ list.reservCount }}
+                        <br>
+                        <b>보유 포인트 : </b>{{ list.point }}
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+       
+        {%endfor%}
+        <br>
+    </div>
+    <br>
+    <!-- 페이지 네이션 -->
+    <div class="page">
+        <div class="container" style="">
+            <h4 style="">
+                {% if posts.has_previous %}
+                <a href="?page=1">맨처음 </a>
+                <a href="?page={{posts.previous_page_number}}">이전</a>
+
+                {% endif %}
+
+                <span>{{posts.number}}</span>
+                <span> of </span>
+                <span>{{posts.paginator.num_pages}}</span>
+
+                {% if posts.has_next %}
+                <a href="?page={{posts.next_page_number}}">다음</a>
+                <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+                {% endif %}
+                <br>
+                {% if posts.has_previous == False and posts.has_next == False %}
+                <!-- <form action="{%url 'getpage' %}">
+                    <h5>페이지 입력
+                        <input type='number' name='pagenum'>
+                    </h5>
+                </form> -->
+                
+                {% else %}
+                <form action="{%url 'getpage' %}">
+                    <h5>페이지 입력
+                        <input type='number' name='pagenum'>
+                    </h5>
+                </form>
+                {% endif %}
+            </h4>
+        </div>
+    </div>
+</div>
+<br> {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'main/layout.html' %} {% block header %}
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="top">
+        <h1>관리자 예약</h1>
+    </div>
+
+    <!-- 예약 리스트를 가져올 부분 -->
+    <div class="container" style="border: 3px solid rgba(0, 0, 0, 0.3); border-radius : 5px; position : relative">
+        {%for list in posts %}
+        <div class="del" style="float : right; margin: 13px 0; margin-left: 10px">
+            <a href="{% url 'rseredit' list.id%}">
+                <button type="button" class="btn btn-secondary">수정</button>
+            </a>
+            <a href="{% url 'delete' list.id%}">
+                <button type="button" class="btn btn-danger">삭제</button>
+            </a>
+        </div>
+        <div class="list">
+            <div class="card" style="margin-top : 13px;">
+                <div class="card-body" style="padding-top : 12px; margin-top : 10px;">
+                    <h4>예약 시간 : {{ list.reservation_time }}</h4>
+                    <p>
+                        <b>인원 수</b> : {{ list.people }}<br>
+                        <b>참석 여부</b> : {{ list.isCheck }}
+                    </p>
+                    <p>
+                        <!-- <b>참석 여부</b> : {{ list.acceptOn }} -->
+                    </p>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+        <br>
+    </div>
+    <br>
+    <!-- 페이지 네이션 -->
+    <div class="page">
+        <div class="container" style="">
+            <h4 style="">
+                {% if posts.has_previous %}
+                <a href="?page=1">맨처음 </a>
+                <a href="?page={{posts.previous_page_number}}">이전</a>
+
+                {% endif %}
+
+                <span>{{posts.number}}</span>
+                <span> of </span>
+                <span>{{posts.paginator.num_pages}}</span>
+
+                {% if posts.has_next %}
+                <a href="?page={{posts.next_page_number}}">다음</a>
+                <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+                {% endif %}
+                <br>
+                <form action="{%url 'getpage' %}">
+                    <h5>페이지 입력
+                        <input type='number' name='pagenum'>
+                    </h5>
+                </form>
+            </h4>
+        </div>
+    </div>
+</div>
+<br> {% endblock %}

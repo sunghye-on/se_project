@@ -1,0 +1,48 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block header %}
+<div class="container">
+    <div style="padding-top :10%">
+        {% if errmsg %}
+        <div class="alert alert-warning" role="alert">
+            {{ errmsg }}
+          </div>
+        {% endif %}
+        <div class="py-5 text-center">
+            <h2>식당 예약 시스템</h2>
+            <p class="lead">여러분의 예약을 기다립니다. 빠르고 간편하게 예약 하세요. </p>
+        </div>
+        <div class="row">
+            <div class="col-md order-md-1">
+                <h4 class="mb-3">{% if request.session.userid %}예약 입력 규격{% else %}비회원 예약 입력 규격{% endif %}</h4>
+                <form action="{% url 'resrv_home' %}" method="POST" class="needs-validation" novalidate> {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md mb-3">
+                            <label for="reserv_date">예약 희망 일자</label>
+                            <input type="datetime-local" class="form-control" id="reserv_date" name="date"
+                                placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="reserv_people">희망 인원</label>
+                            <input type="number" class="form-control" id="reserv_people" placeholder="" name="hopping_member" required>
+                            <div class="invalid-feedback">
+                                Zip code required.
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg" type="submit" style="margin-left: 10px; float: right;">예약 계속하기</button>
+                    <a class="btn btn-success" href="{% url 'reserv_check' %}" style="float: right;">예약 목록 확인</a>
+                </form>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+
+
+{% endblock %}

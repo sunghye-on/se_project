@@ -1,0 +1,44 @@
+{% extends 'main/layout.html' %} {% block header %}
+
+<div class="container" style="display: block;">
+    {% if request.session.manager %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 기능 틀 제작 -->
+    <div class="m_btn" style="display: flex; justify-content: space-between; margin-bottom: 50px;">
+        <div>
+            <a class="btn btn-dark" href="{% url 'resrv_home' %}" role="button" style="width : 250px;">예약 추가</a>
+        </div>
+        <div>
+            <a class="btn btn-dark" href="{% url 'm_reserv' %}" role="button" style="width : 250px;">예약 관리</a>
+        </div>
+        <!-- <a class="btn btn-primary" href="#" role="button">기록 관리</a> -->
+        <div>
+            <a class="btn btn-dark" href="{% url 'm_restaurant' %}" role="button" style="width : 250px;">매장 관리</a>
+        </div>
+    </div>
+    <div class="m_btn" style="display: flex; justify-content: space-between; margin-bottom: 50px;">
+        <div>
+            <a class="btn btn-dark" href="{% url 'm_user' %}" role="button" style="width : 250px;">유저 관리</a>
+        </div>
+        <div>
+            <a class="btn btn-dark" href="{% url 'point' %}" role="button" style="width : 250px;">포인트 관리</a>
+        </div>
+        <!-- <a class="btn btn-primary" href="#" role="button">기록 관리</a> -->
+        <div>
+            <a class="btn btn-dark disabled" href="#" role="button" style="width : 250px;" aria-disabled="true">가능 업데이트 예정</a>
+        </div>
+    </div>
+
+    {% else %}
+    <!-- <div>         어차피 이페이지는 관리자만 집입가능 하므로 매니저관한 신청 생략
+        <a class="btn btn-primary" href="{% url 'm_accept' %}" role="button">매니저 권한 신청</a>
+    </div> -->
+    {% endif %}
+</div>
+{% endblock %}

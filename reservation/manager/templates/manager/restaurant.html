@@ -1,0 +1,69 @@
+{% extends 'main/layout.html' %} {% block header %}
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="top" style="display: flex; justify-content: space-between;">
+        <h1>매장 관리</h1>
+        <a class="btn btn-dark" href="{% url 'table_add' %}" role="button" style="width : 250px; transform: translateY(-15px);">테이블 추가</a>
+    </div>
+
+    <!-- 예약 리스트를 가져올 부분 -->
+    <div class="container" style="border: 3px solid rgba(0, 0, 0, 0.3); border-radius : 5px; position : relative">
+        {%for list in posts %}
+        <div class="del" style="float : right; margin: 13px 0; margin-left: 10px">
+            <a href="{% url 'r_edit' list.id%}">
+                <button type="button" class="btn btn-secondary">수정</button>
+            </a>
+            <!-- <a href="{% url 'delete' list.id%}">
+                <button type="button" class="btn btn-danger">삭제</button>
+            </a> -->
+        </div>
+        <div class="list">
+            <div class="card" style="margin-top : 13px;">
+                <div class="card-body" style="padding-top : 12px; margin-top : 10px;">
+                    <h4>테이블 번호 : {{ list.table_num }}</h4>
+                    <p>
+                        <b>최대 인원 수</b> : {{ list.max }}
+                    </p>
+                    <p>
+                        <b>사용 가능</b> : {{ list.able }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+        <br>
+    </div>
+    <br>
+    <!-- 페이지 네이션 -->
+    <div class="page">
+        <div class="container" style="">
+            <h4 style="">
+                {% if posts.has_previous %}
+                <a href="?page=1">맨처음 </a>
+                <a href="?page={{posts.previous_page_number}}">이전</a>
+
+                {% endif %}
+
+                <span>{{posts.number}}</span>
+                <span> of </span>
+                <span>{{posts.paginator.num_pages}}</span>
+
+                {% if posts.has_next %}
+                <a href="?page={{posts.next_page_number}}">다음</a>
+                <a href="?page={{posts.paginator.num_pages}}">마지막</a>
+                {% endif %}
+                <br>
+                <form action="{%url 'getpage' %}">
+                    <h5>페이지 입력
+                        <input type='number' name='pagenum'>
+                    </h5>
+                </form>
+            </h4>
+        </div>
+    </div>
+</div>
+<br> {% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block header %}
+<link href="{% static 'login/css/login.css' %}?ver=1" rel="stylesheet">
+
+<div class="container h-100 align-items-center">
+  <div style="padding-top :10%">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Change Password</h5>
+            <form action="{% url 'change_pwd' %}" method="POST" class="form-signin"> {% csrf_token %}
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" name='pwd'
+                  required>
+                <label for="inputPassword">Password</label>
+              </div>
+              <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" name='checkpwd'
+                    required>
+                  <label for="inputPassword">Check Password</label>
+                </div>
+              <input type="hidden" value="{{username}}" name="id" >
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
