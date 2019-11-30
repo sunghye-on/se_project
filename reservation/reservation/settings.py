@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'reserv.apps.ReservConfig',
     'login.apps.LoginConfig',
     'manager.apps.ManagerConfig',
+<<<<<<< HEAD
     'point.apps.PointConfig',
+=======
+>>>>>>> c6a05983a5e4fb87bfa07f922ce9abae897ba62b
 ]
 
 MIDDLEWARE = [

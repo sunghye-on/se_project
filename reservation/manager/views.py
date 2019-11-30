@@ -4,7 +4,10 @@ from django.core.paginator import Paginator
 from reserv.models import *
 from login.models import *
 from .models import *
+<<<<<<< HEAD
 from point.models import *
+=======
+>>>>>>> c6a05983a5e4fb87bfa07f922ce9abae897ba62b
 # Create your views here.
 def m_home(request) :
     return render(request, 'manager/home.html')
@@ -45,7 +48,11 @@ def delete(request, list_id):
     res.delete()
     return redirect('/manager/page/reserv')
 def m_user(request):
+<<<<<<< HEAD
     list = NormalUser.objects and User.objects 
+=======
+    list = NormalUser.objects and User.objects
+>>>>>>> c6a05983a5e4fb87bfa07f922ce9abae897ba62b
     list_all = NormalUser.objects.all() and User.objects.all()
     paginator = Paginator(list_all,6)
     page1 = request.GET.get('page')

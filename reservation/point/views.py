@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render , redirect
 from django.core.paginator import Paginator
 # Create your views here.
@@ -45,5 +46,10 @@ def calPoint(request, list_id):
     else :
         return redirect('/manager/page/point')
     
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> c6a05983a5e4fb87bfa07f922ce9abae897ba62b
 
 
