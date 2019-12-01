@@ -6,28 +6,27 @@ class NormalUser(models.Model) :
     idName = models.CharField(max_length=10)
     password = models.CharField(max_length=16)
     nickName = models.CharField(max_length=10)
-<<<<<<< HEAD
+
     point = models.IntegerField(default = 0)
-=======
->>>>>>> c6a05983a5e4fb87bfa07f922ce9abae897ba62b
+
     # str로 변경 
     def __str__(self) :
         return self.nickName
 
 class User(NormalUser) :
     phoneNumber = models.CharField(max_length=12)
-<<<<<<< HEAD
+
     reservCount = models.IntegerField(default = 0)
     # point = models.IntegerField(default = 0)
     isManager = models.BooleanField(default=False)
     isVip = models.BooleanField(default=False)
     isBlack = models.BooleanField(default=False)
     
-=======
+
     isManager = models.BooleanField(default=False)
 
 
->>>>>>> c6a05983a5e4fb87bfa07f922ce9abae897ba62b
+
 class Location(models.Model) :
     city = models.CharField(max_length=30)
     # str로 변경 
